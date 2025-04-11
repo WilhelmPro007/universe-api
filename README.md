@@ -10,9 +10,9 @@ API para una aplicación similar a Reddit, desarrollada con Django y Django REST
 - [Configuración](#configuración)
 - [Ejecución](#ejecución)
 - [Documentación de la API](#documentación-de-la-api)
+- [Pruebas](#pruebas)
   - [Autenticación](#autenticación)
   - [Endpoints](#endpoints)
-- [Pruebas](#pruebas)
 
 ## Requisitos
 - Python 3.8 o superior
