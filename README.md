@@ -86,6 +86,44 @@ python manage.py runserver
 
 ## Documentación de la API
 
+La API está documentada en dos formatos:
+
+1. **Swagger UI**: Interfaz interactiva que permite explorar y probar los endpoints
+   - URL: http://127.0.0.1:8000/swagger/
+   - Características: Permite ejecutar peticiones directamente desde el navegador
+
+2. **ReDoc**: Documentación en formato más legible
+   - URL: http://127.0.0.1:8000/redoc/
+   - Características: Mejor para lectura y comprensión de la API
+
+## Pruebas
+
+Para probar la API usando Swagger UI:
+1. Inicia el servidor:
+```bash
+python manage.py runserver
+```
+
+2. Abre http://127.0.0.1:8000/swagger/ en tu navegador
+
+3. Obtén un token de acceso:
+   - Busca el endpoint `/api/v1/auth/token/`
+   - Haz clic en "Try it out"
+   - Ingresa tus credenciales
+   - Haz clic en "Execute"
+   - Copia el token de acceso
+
+4. Autoriza las peticiones:
+   - Haz clic en "Authorize"
+   - Ingresa `Bearer tu_token`
+   - Haz clic en "Authorize"
+
+5. Prueba los endpoints:
+   - Expande cualquier endpoint que quieras probar
+   - Haz clic en "Try it out"
+   - Completa los parámetros necesarios
+   - Haz clic en "Execute"
+
 ### Autenticación
 
 La API utiliza JWT (JSON Web Tokens) para la autenticación. Para obtener un token:
@@ -123,31 +161,4 @@ La API utiliza JWT (JSON Web Tokens) para la autenticación. Para obtener un tok
 - `GET /api/v1/messages/` - Lista todos los mensajes
 - `POST /api/v1/messages/` - Crea un nuevo mensaje
 
-## Pruebas
 
-Para probar la API usando Swagger UI:
-
-1. Inicia el servidor:
-```bash
-python manage.py runserver
-```
-
-2. Abre http://127.0.0.1:8000/swagger/ en tu navegador
-
-3. Obtén un token de acceso:
-   - Busca el endpoint `/api/v1/auth/token/`
-   - Haz clic en "Try it out"
-   - Ingresa tus credenciales
-   - Haz clic en "Execute"
-   - Copia el token de acceso
-
-4. Autoriza las peticiones:
-   - Haz clic en "Authorize"
-   - Ingresa `Bearer tu_token`
-   - Haz clic en "Authorize"
-
-5. Prueba los endpoints:
-   - Expande cualquier endpoint que quieras probar
-   - Haz clic en "Try it out"
-   - Completa los parámetros necesarios
-   - Haz clic en "Execute"
