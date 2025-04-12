@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'profiles',
     'chats',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'UNAUTHENTICATED_USER': None,
+    'UNAUTHENTICATED_TOKEN': None,
 }
 
 # Swagger settings
@@ -151,6 +156,20 @@ SWAGGER_SETTINGS = {
         }
     },
     'USE_SESSION_AUTH': False,
+    'PERSIST_AUTH': True,
+    'REFETCH_SCHEMA_WITH_AUTH': True,
+    'REFETCH_SCHEMA_ON_LOGOUT': True,
+    'OPERATIONS_SORTER': 'alpha',
+    'TAGS_SORTER': 'alpha',
+    'DOC_EXPANSION': 'none',
+    'DEFAULT_MODEL_RENDERING': 'example',
+    'DEFAULT_INFO': {
+        'title': 'Universe API',
+        'description': 'API para una aplicación similar a Reddit',
+        'version': 'v1',
+    },
+    'SECURITY_REQUIREMENTS': [],
+    'VALIDATOR_URL': None,  # Deshabilitar validación de esquema
 }
 
 # JWT Settings
@@ -174,4 +193,11 @@ SIMPLE_JWT = {
     
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
+    
+    # Agregar claims personalizados
+    'USER_CLAIMS': {
+        'is_superuser': 'is_superuser',
+        'is_staff': 'is_staff',
+        'groups': 'groups',
+    },
 }

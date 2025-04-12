@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import Group
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
@@ -26,7 +27,14 @@ def create_user_profile(sender, instance, created, **kwargs):
     Signal para crear automáticamente un perfil de usuario cuando se crea un nuevo usuario.
     """
     if created:
-        UserProfile.objects.create(user=instance)
+        profile = UserProfile.objects.create(user=instance)
+        # Asignar grupo por defecto
+        user_group = Group.objects.get_or_create(name='User')[0]
+        instance.groups.add(user_group)
+        # Si es superusuario, asignar grupo de administrador
+        if instance.is_superuser:
+            admin_group = Group.objects.get_or_create(name='Administrator')[0]
+            instance.groups.add(admin_group)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
